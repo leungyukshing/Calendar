@@ -8,6 +8,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,6 +23,8 @@ namespace Calendar
     /// <summary>
     /// 提供特定于应用程序的行为，以补充默认的应用程序类。
     /// </summary>
+    /// 
+
     sealed partial class App : Application
     {
         /// <summary>
@@ -40,6 +43,9 @@ namespace Calendar
             // default
             isLogin = false;
             loginUser = null;
+
+            TileUpdateManager.CreateTileUpdaterForApplication().Clear();
+            TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueue(true);
         }
 
         /// <summary>

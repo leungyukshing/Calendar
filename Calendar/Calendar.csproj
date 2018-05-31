@@ -107,6 +107,7 @@
     <Compile Include="Models\UserItem.cs" />
     <Compile Include="network\networkConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\TileService.cs" />
     <Compile Include="Services\TimeService.cs" />
     <Compile Include="SigninPage.xaml.cs">
       <DependentUpon>SigninPage.xaml</DependentUpon>
@@ -114,6 +115,7 @@
     <Compile Include="SignupPage.xaml.cs">
       <DependentUpon>SignupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tile\PrimaryTile.cs" />
     <Compile Include="ViewModels\View.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +126,16 @@
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\background.scale-100.jpg" />
+    <Content Include="Assets\background.scale-125.jpg" />
+    <Content Include="Assets\background.scale-150.jpg" />
+    <Content Include="Assets\background.scale-200.jpg" />
+    <Content Include="Assets\background.scale-400.jpg" />
+    <Content Include="Assets\background.targetsize-256.jpg" />
+    <Content Include="Assets\cloud.png" />
+    <Content Include="Assets\LockScreenLogo.scale-400.png" />
+    <Content Include="Assets\rain.png" />
+    <Content Include="Assets\sun.scale-400.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

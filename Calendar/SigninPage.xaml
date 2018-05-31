@@ -6,8 +6,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+
+    <Page.Background>
+        <ImageBrush Stretch="UniformToFill" ImageSource="Assets/background.jpg"/>
+    </Page.Background>
+    
     <ScrollViewer HorizontalScrollBarVisibility="Auto">
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" MinWidth="800" MinHeight="550">
+    <Grid  MinWidth="800" MinHeight="550">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>

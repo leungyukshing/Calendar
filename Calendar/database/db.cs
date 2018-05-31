@@ -3,6 +3,7 @@ using SQLitePCL;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -81,14 +82,31 @@ namespace Calendar.database
                 using (var statement = db.Prepare("SELECT * FROM item where name = ?"))
                 {
                     statement.Bind(1, name);
+                    Debug.WriteLine("before while, name = " + name);
                     while (statement.Step() == SQLiteResult.ROW)
                     {
+                        Debug.WriteLine("while loop...");
                         var temp = ((string)statement[4]).Split('/');
-                        var date1 = new DateTime(int.Parse(temp[2]), int.Parse(temp[0]), int.Parse(temp[1]), int.Parse(temp[3]), int.Parse(temp[4]),0);
-                        var date = new DateTimeOffset(date1);
-                        var titem = new TodoItem((string)statement[2], (string)statement[3], date, (string)statement[5], (string)statement[0], ((Int64)statement[6]) == Int64.Parse("1") ? true : false);
+                        int year = int.Parse(temp[2]);
+                        int month = int.Parse(temp[0]);
+                        int day = int.Parse(temp[1]);
+                        int hour = int.Parse(temp[3]);
+                        int minute = int.Parse(temp[4]);
+                        var date1 = new DateTimeOffset(year, month, day,hour, minute,0,TimeSpan.Zero);
+                        var date = date1;
+                        string tid = (string)statement[0];
+                        string ttitle = (string)statement[2];
+                        string tdes = (string)statement[3];
+                        string timage = (string)statement[5];
+                        var t = ((Int64)statement[6]) == Int64.Parse("1") ? true : false;
+                        Debug.WriteLine("t==" + t);
+                        var  titem = new TodoItem(ttitle, tdes, date, timage, tid, t);
+
                         view.Add(titem);
+                       // view.Add(null);
+                        Debug.WriteLine("hello");
                     }
+                    Debug.WriteLine("after while..");
                 }
                 return view;
             }
@@ -107,12 +125,12 @@ namespace Calendar.database
                 using (
                     var sql = db.Prepare("INSERT INTO item (name, id, title, content, date, image, finish) VALUES (?, ?, ?, ?, ?, ?, ?)")){
                     sql.Bind(1, name);//uid
-                    sql.Bind(1, id);
-                    sql.Bind(2, title);
-                    sql.Bind(3, content);
-                    sql.Bind(4, date.Month.ToString() + '/' + date.Day.ToString() + '/' + date.Year.ToString() + '/' + date.Hour.ToString() + '/' + date.Minute.ToString());
-                    sql.Bind(5, imageString);
-                    sql.Bind(6, -1);
+                    sql.Bind(2, id);
+                    sql.Bind(3, title);
+                    sql.Bind(4, content);
+                    sql.Bind(5, date.Month.ToString() + '/' + date.Day.ToString() + '/' + date.Year.ToString() + '/' + date.Hour.ToString() + '/' + date.Minute.ToString());
+                    sql.Bind(6, imageString);
+                    sql.Bind(7, -1);
                     sql.Step();
                 }
                 Background.BackgroundTask.getInstance().AddClock(id, title, content, imageString, date);

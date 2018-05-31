@@ -2,6 +2,7 @@
 using Calendar.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -64,14 +65,14 @@ namespace Calendar
             }
             // check whether the password is correct
 
-            //UserItem user = new UserItem(username, password, root);
+            App.loginUser = new UserItem(username, password, 0);
             // set the state to login
             App.isLogin = true;
             App.loginUser = flag;
 
 
             // jump to mainpage
-            Frame.Navigate(typeof(MainPage), "");
+            Frame.Navigate(typeof(MainPage));
         }
 
         // 检查用户信息格式
@@ -95,7 +96,7 @@ namespace Calendar
         // 跳转到注册页面
         private void SignupButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(SignupPage), "");
+            Frame.Navigate(typeof(SignupPage));
         }
     }
 }

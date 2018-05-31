@@ -71,6 +71,7 @@ namespace Calendar.Models
                     Debug.WriteLine("property changed");
                     Debug.WriteLine("Visibility==" + Vis);
                     PropertyChanged(this, new PropertyChangedEventArgs("Vis"));
+                    PropertyChanged(this, new PropertyChangedEventArgs("Completed"));
                 }
             }
         }
@@ -108,7 +109,7 @@ namespace Calendar.Models
             }
         }
         public string uriPath { get; set; } = "ms-appx:///Assets/init.png";
-        public TodoItem(string title, string description, DateTimeOffset date,string uri,string id_=null,bool finished = false)
+        public TodoItem(string title, string description, DateTimeOffset date,string uri,string id_,bool finished = false)
         {
             
 
