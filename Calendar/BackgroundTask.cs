@@ -32,9 +32,12 @@ namespace Calendar.Background
             return Ins;
         }
 
-        public Boolean AddClock(String id, String title, String content, String ImagePath, DateTimeOffset date,String name)//param:
+        public Boolean AddClock(String id, String title, String content, String ImagePath, DateTimeOffset date_old,String name)//param:
         {
-            if (id == null|| id == "" || DateTimeOffset.Now.CompareTo(date) <= 0 )
+            var dd = new DateTime(date_old.Year, date_old.Month, date_old.Day, date_old.Hour, date_old.Minute, 0);
+            var date = new DateTimeOffset(dd);
+
+            if (id == null|| id == "" || DateTimeOffset.Now.CompareTo(date) >= 0 )
             {
                 return false;
             }
@@ -64,15 +67,13 @@ namespace Calendar.Background
                 ToastNotification toast = new ToastNotification(toastXml);
 
                 ScheduledToastNotification scheduledToast = new ScheduledToastNotification(toastXml, date);
-                scheduledToast.Id = id;
+                scheduledToast.Id = id.Substring(0,15);
 
                 ToastNotificationManager.CreateToastNotifier().AddToSchedule(scheduledToast);
-                
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 return false;
             }
         }
