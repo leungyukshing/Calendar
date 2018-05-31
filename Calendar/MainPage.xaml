@@ -127,6 +127,7 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="40"/>
@@ -137,15 +138,16 @@
                 <TextBox x:Name="title" Background="Transparent" Grid.Column="1" Grid.Row="0" Text="" Height="20" VerticalAlignment="Top" Margin="10, 0, 0 ,0" BorderThickness="0, 0, 0 ,2"/>
                 <TextBox x:Name="name" Background="Transparent" IsReadOnly="True" Grid.Column="1" Grid.Row="1" Text="" Height="20" VerticalAlignment="Top" Margin="10, 0, 0 ,0" BorderThickness="0, 0, 0 ,2"/>
                 <DatePicker x:Name="date" Background="Transparent" Grid.Column="1" Grid.Row="2" Width="440" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10, 0, 0, 0" Grid.ColumnSpan="2" Height="32"/>
-
+                
                 <AppBarButton x:Name="delete" Grid.Column="2" Grid.Row="0" Icon="Delete" HorizontalAlignment="Center" Click="Delete_Event"/>
                 <AppBarButton x:Name="share" Grid.Column="2" Grid.Row="1" Icon="Send" HorizontalAlignment="Center" Click="Share_Event"/>
-
+                <TextBlock Text="time" Grid.Row="3" Grid.Column="0"/>
+                <TimePicker Name="time" Grid.Row="3" Grid.Column="1"/>
                 <AppBarButton x:Name="complete" Grid.Column="2" Grid.Row="2" Content="future" HorizontalAlignment="Center" Click="Complete_Click"/>
-                <Line Grid.ColumnSpan="3" Grid.Row="3" X1="0" X2="1500" Y1="0" Y2="0" Stroke="Black" StrokeThickness="1" />
-                <TextBox BorderThickness="0, 0, 0 ,0" Background="Transparent" x:Name="detail" Grid.ColumnSpan="3" Grid.Row="4" TextWrapping="Wrap" Height="370" AcceptsReturn="True"/>
-                <AppBarButton Grid.Row="5" Grid.ColumnSpan="3" Content="Import" Width="300" HorizontalAlignment="Left" Click="Import_Txt"/>
-                <AppBarButton x:Name="add" Grid.Row="5" Grid.ColumnSpan="3"  Width="300" Content="Create" HorizontalAlignment="Right" Click="Add_Or_Update"/>
+                <Line Grid.ColumnSpan="3" Grid.Row="4" X1="0" X2="1500" Y1="0" Y2="0" Stroke="Black" StrokeThickness="1" />
+                <TextBox BorderThickness="0, 0, 0 ,0" Background="Transparent" x:Name="detail" Grid.ColumnSpan="3" Grid.Row="5" TextWrapping="Wrap" Height="370" AcceptsReturn="True"/>
+                <AppBarButton Grid.Row="6" Grid.ColumnSpan="3" Content="Import" Width="300" HorizontalAlignment="Left" Click="Import_Txt"/>
+                <AppBarButton x:Name="add" Grid.Row="6" Grid.ColumnSpan="3"  Width="300" Content="Create" HorizontalAlignment="Right" Click="Add_Or_Update"/>
 
             </Grid>
         </Grid>

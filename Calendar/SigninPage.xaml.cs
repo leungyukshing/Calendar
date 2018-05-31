@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -50,7 +51,7 @@ namespace Calendar
             // user is not found
             if (flag == false)
             {
-                //var m = new MessageDialog("用户不存在").ShowAsync();
+              //   new MessageDialog("用户不存在").ShowAsync();
                 UsernameError.Text = "用户不存在或密码错误";
                 return;
             }

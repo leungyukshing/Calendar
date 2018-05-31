@@ -32,7 +32,7 @@ namespace Calendar.Background
             return Ins;
         }
 
-        public Boolean AddClock(String id, String title, String content, String ImagePath, DateTimeOffset date)//param:
+        public Boolean AddClock(String id, String title, String content, String ImagePath, DateTimeOffset date,String name)//param:
         {
             if (id == null|| id == "" || DateTimeOffset.Now.CompareTo(date) <= 0 )
             {
@@ -59,7 +59,7 @@ namespace Calendar.Background
                 //IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
                 //XmlElement audio = toastXml.CreateElement("audio");
 
-                ((XmlElement)toastNode).SetAttribute("launch", "{\"type\":\"toast\",\"id\":\""+ id +"\"}");
+                ((XmlElement)toastNode).SetAttribute("launch", "{\"type\":\"toast\",\"id\":\""+ id + "\"},\"name\":\"" + name + "\"}");
 
                 ToastNotification toast = new ToastNotification(toastXml);
 
