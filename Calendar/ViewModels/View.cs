@@ -30,12 +30,17 @@ namespace Calendar.ViewModels
 
         async public void load()
         {
-            Debug.WriteLine("loading...");
+
+
             Future.listName = "future";
             Finished.listName = "finished";
+
+            Future.EventName = "Add";
+            Finished.EventName = "Delete All";
             if (App.loginUser == null)
                 return;
             Group all = new Group( database.Db.GetInstance().GetAll(App.loginUser.username));
+            Debug.WriteLine("all .count "+all.itemList.Count);
             Finished.itemList.Clear();
             Finished.all_item = 0;
             Future.itemList.Clear();
@@ -143,7 +148,9 @@ namespace Calendar.ViewModels
             if (Future.itemList.Remove(todo))
                 Future.all_item--;
 
+
             Circulation();
+
         }
 
         public void Add(TodoItem todo)

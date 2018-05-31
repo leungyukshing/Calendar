@@ -46,30 +46,19 @@ namespace Calendar
             }
 
             // check whether the user exist
-            var flag =  Db.GetInstance().Login(username);
+            var flag =  Db.GetInstance().Login(username,password);
             // user is not found
-            if (flag == null)
+            if (flag == false)
             {
                 //var m = new MessageDialog("用户不存在").ShowAsync();
-                UsernameError.Text = "用户不存在";
+                UsernameError.Text = "用户不存在或密码错误";
                 return;
-            }
-            else
-            {
-                // 密码不正确
-                if (flag.password != password)
-                {
-                    PasswordError.Text = "密码错误";
-                    return;
-                }
             }
             // check whether the password is correct
 
             App.loginUser = new UserItem(username, password, 0);
             // set the state to login
             App.isLogin = true;
-            App.loginUser = flag;
-
 
             // jump to mainpage
             Frame.Navigate(typeof(MainPage));

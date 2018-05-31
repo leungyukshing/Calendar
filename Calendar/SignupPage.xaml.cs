@@ -63,7 +63,7 @@ namespace Calendar
 
             // insert to database
             // Fail
-            if (!Db.GetInstance().Register(username, password, root))
+            if (!Db.GetInstance().Register(username, password))
             {
                 var m = new MessageDialog("用户名已存在").ShowAsync();
             }

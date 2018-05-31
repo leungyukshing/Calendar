@@ -127,7 +127,7 @@ namespace Calendar.Models
             ImageSource_ = new BitmapImage(new Uri(uriPath));
 
             //
-            if (id_ == null||id.Length < 10) {
+            if (id_ == null) {
                 id = Guid.NewGuid().ToString("N");
             }
 

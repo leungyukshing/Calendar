@@ -8,10 +8,10 @@ using Windows.Data.Xml.Dom;
 
 namespace Calendar.Background
 {
-    //日常单例，用户退出登陆状态应该调用deleteAllCurrent()，删除所有的闹钟记录，只是关闭应用的话，不用。
+    //（已经附加到db的增加中）日常单例，用户退出登陆状态应该调用deleteAllCurrent()，删除所有的闹钟记录，只是关闭应用的话，不用。
     //（已经附加到db的增加中）新增一个需要有闹钟的todoitem时，要用AddClock增加闹钟，id将使用todoitem的id。因为闹钟在退出的登录的时候会删掉，所以没问题。
-    //还有就是新用户登陆，加载事件时，应该要对每个有闹钟需求的item调用AddClock来增加闹钟
-    //（已经附加到db的删除中）用户删除带闹钟的日程前应该先调用一次DeleteClock
+    //还有就是新用户登陆，加载事件时，应该要对每个有闹钟需求(未完成)的item调用AddClock来增加闹钟
+    //（已经附加到db的删除中）用户删除带闹钟的日程或者完成了某个日程应该先调用一次DeleteClock
     class BackgroundTask
     {
 
@@ -34,7 +34,7 @@ namespace Calendar.Background
 
         public Boolean AddClock(String id, String title, String content, String ImagePath, DateTimeOffset date)//param:
         {
-            if (id == null|| id == "")
+            if (id == null|| id == "" || DateTimeOffset.Now.CompareTo(date) <= 0 )
             {
                 return false;
             }
@@ -49,11 +49,11 @@ namespace Calendar.Background
                 toastTextElements[1].AppendChild(toastXml.CreateTextNode(content));
 
                 XmlNodeList toastImageAttributes = toastXml.GetElementsByTagName("image");
-                ((XmlElement)toastImageAttributes[0]).SetAttribute("src", "ms-appx:///assets/StoreLogo.png");//ImagePath
+                ((XmlElement)toastImageAttributes[0]).SetAttribute("src", "ms-appx:///assets/sun.scale-400.png");//ImagePath
                 ((XmlElement)toastImageAttributes[0]).SetAttribute("alt", "testImage");
 
                 IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
-                ((XmlElement)toastNode).SetAttribute("duration", "long");
+                //((XmlElement)toastNode).SetAttribute("duration", "long");
 
                 //change music
                 //IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
