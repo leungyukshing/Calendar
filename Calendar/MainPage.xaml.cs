@@ -157,7 +157,7 @@ namespace Calendar
             time.Time = new TimeSpan(DateTimeOffset.Now.Hour,DateTimeOffset.Now.Minute,DateTimeOffset.Now.Second);
             Update_flag = false;
             complete.Content = "future";
-            //add.Content = "create";
+            add.Content = "Create";
             await getConnectToGetWeatherAsync("广州");
         }
 
